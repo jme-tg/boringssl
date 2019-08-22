@@ -1,4 +1,7 @@
 include_directories(../../include)
+include_directories(../../third_party/lwip/contrib/ports/xilinx/include)
+include_directories(../../third_party/lwip/lwip-2.1.1/src/include)
+include_directories(../../third_party/lwip/lwip-2.1.1/src/include/compat/posix)
 
 add_library(
   bio

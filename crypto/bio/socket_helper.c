@@ -35,6 +35,10 @@ OPENSSL_MSVC_PRAGMA(warning(pop))
 #include "internal.h"
 #include "../internal.h"
 
+static const char *gai_strerror(int errcode) {
+  //TODO implement when needed
+  return NULL;
+}
 
 int bio_ip_and_port_to_socket_and_addr(int *out_sock,
                                        struct sockaddr_storage *out_addr,

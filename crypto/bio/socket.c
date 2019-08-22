@@ -73,10 +73,12 @@ OPENSSL_MSVC_PRAGMA(comment(lib, "Ws2_32.lib"))
 #include "internal.h"
 
 
+#if 0
 #if !defined(OPENSSL_WINDOWS)
 static int closesocket(int sock) {
   return close(sock);
 }
+#endif
 #endif
 
 static int sock_new(BIO *bio) {

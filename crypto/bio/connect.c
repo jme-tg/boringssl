@@ -62,7 +62,7 @@
 
 #if !defined(OPENSSL_WINDOWS)
 #include <sys/socket.h>
-#include <netinet/in.h>
+//#include <netinet/in.h> //TODO could create dummy file and leave this as is
 #include <arpa/inet.h>
 #include <unistd.h>
 #else
@@ -107,10 +107,12 @@ typedef struct bio_connect_st {
   int (*info_callback)(const BIO *bio, int state, int ret);
 } BIO_CONNECT;
 
+#if 0
 #if !defined(OPENSSL_WINDOWS)
 static int closesocket(int sock) {
   return close(sock);
 }
+#endif
 #endif
 
 // split_host_and_port sets |*out_host| and |*out_port| to the host and port
