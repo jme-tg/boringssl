@@ -1,4 +1,7 @@
 include_directories(../include)
+include_directories(../third_party/lwip/contrib/ports/xilinx/include)
+include_directories(../third_party/lwip/lwip-2.1.1/src/include)
+include_directories(../third_party/lwip/lwip-2.1.1/src/include/compat/posix)
 
 add_library(
   ssl
@@ -44,18 +47,19 @@ add_library(
 
 target_link_libraries(ssl crypto)
 
-add_executable(
-  ssl_test
+# add_executable(
+#  ssl_test
 
-  span_test.cc
-  ssl_test.cc
+#  span_test.cc
+#  ssl_test.cc
 
-  $<TARGET_OBJECTS:boringssl_gtest_main>
-  $<TARGET_OBJECTS:test_support>
-)
+#  $<TARGET_OBJECTS:boringssl_gtest_main>
+#  $<TARGET_OBJECTS:test_support>
+# )
 
-target_link_libraries(ssl_test ssl crypto boringssl_gtest)
+target_link_libraries(ssl crypto)
+#target_link_libraries(ssl_test ssl crypto boringssl_gtest)
 if (WIN32)
   target_link_libraries(ssl_test ws2_32)
 endif()
-add_dependencies(all_tests ssl_test)
+# add_dependencies(all_tests ssl_test)
