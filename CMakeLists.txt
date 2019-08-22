@@ -350,21 +350,21 @@ endif()
 
 # Add minimal googletest targets. The provided one has many side-effects, and
 # googletest has a very straightforward build.
-add_library(boringssl_gtest third_party/googletest/src/gtest-all.cc)
-target_include_directories(boringssl_gtest PRIVATE third_party/googletest)
+# add_library(boringssl_gtest third_party/googletest/src/gtest-all.cc)
+# target_include_directories(boringssl_gtest PRIVATE third_party/googletest)
 
-include_directories(third_party/googletest/include)
+# include_directories(third_party/googletest/include)
 
 # Declare a dummy target to build all unit tests. Test targets should inject
 # themselves as dependencies next to the target definition.
 add_custom_target(all_tests)
 
-add_custom_command(
-  OUTPUT crypto_test_data.cc
-  COMMAND ${GO_EXECUTABLE} run util/embed_test_data.go ${CRYPTO_TEST_DATA} >
-  ${CMAKE_CURRENT_BINARY_DIR}/crypto_test_data.cc
-  DEPENDS util/embed_test_data.go ${CRYPTO_TEST_DATA}
-  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+ add_custom_command(
+   OUTPUT crypto_test_data.cc
+   COMMAND ${GO_EXECUTABLE} run util/embed_test_data.go ${CRYPTO_TEST_DATA} >
+   ${CMAKE_CURRENT_BINARY_DIR}/crypto_test_data.cc
+   DEPENDS util/embed_test_data.go ${CRYPTO_TEST_DATA}
+   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_library(crypto_test_data OBJECT crypto_test_data.cc)
 
@@ -393,13 +393,13 @@ if (NOT ${CMAKE_VERSION} VERSION_LESS "3.2")
   set(MAYBE_USES_TERMINAL USES_TERMINAL)
 endif()
 
-add_custom_target(
-    run_tests
-    COMMAND ${GO_EXECUTABLE} run util/all_tests.go -build-dir
-            ${CMAKE_BINARY_DIR}
-    COMMAND cd ssl/test/runner &&
-            ${GO_EXECUTABLE} test -shim-path $<TARGET_FILE:bssl_shim>
-              ${RUNNER_ARGS}
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    DEPENDS all_tests bssl_shim
-    ${MAYBE_USES_TERMINAL})
+# add_custom_target(
+    # run_tests
+    # COMMAND ${GO_EXECUTABLE} run util/all_tests.go -build-dir
+            # ${CMAKE_BINARY_DIR}
+    # COMMAND cd ssl/test/runner &&
+            # ${GO_EXECUTABLE} test -shim-path $<TARGET_FILE:bssl_shim>
+#               ${RUNNER_ARGS}
+    # WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    # DEPENDS all_tests bssl_shim
+    # ${MAYBE_USES_TERMINAL})
