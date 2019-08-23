@@ -3065,7 +3065,7 @@ static int ssl_scan_clienthello_tlsext(SSL_HANDSHAKE *hs,
       continue;
     }
 
-    unsigned ext_index;
+    uint32_t ext_index;
     const struct tls_extension *const ext =
         tls_extension_find(&ext_index, type);
 
@@ -3164,7 +3164,7 @@ static int ssl_scan_serverhello_tlsext(SSL_HANDSHAKE *hs, CBS *cbs,
       return 0;
     }
 
-    unsigned ext_index;
+    uint32_t ext_index;
     const struct tls_extension *const ext =
         tls_extension_find(&ext_index, type);
 
