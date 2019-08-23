@@ -109,7 +109,7 @@
  */
 
 #include <openssl/ssl.h>
-
+#if 0
 #if !defined(OPENSSL_WINDOWS) && !defined(OPENSSL_PNACL)
 
 #include <dirent.h>
@@ -161,5 +161,5 @@ int SSL_add_dir_cert_subjects_to_stack(STACK_OF(X509_NAME) *stack,
   closedir(dir);
   return ret;
 }
-
 #endif  // !WINDOWS && !PNACL
+#endif
